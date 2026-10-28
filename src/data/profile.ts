@@ -10,7 +10,7 @@ export const profile = {
   phone: '+54 (351) 3430 693',
   photo: '/img/user-photo.jpg',
   resume: '/files/Mauricio_Godoy_Resume.pdf',
-  yearsExperience: 9,
+  yearsExperience: '10+',
 
   socials: [
     { label: 'LinkedIn', url: 'https://linkedin.com/in/mauricio-godoy-37a30565' },
@@ -70,6 +70,32 @@ export const profile = {
       summary: ['Responsible for developing assigned requirements end to end, from development and testing to production deployment.'],
       tech: ['Java', 'Spring Boot', 'Blockchain', 'Event-driven architecture', 'Maven', 'Redis', 'Axon', 'Reactive programming', 'Kafka', 'Spring Cloud', 'Docker', 'Kubernetes', 'Git'],
     },
+    {
+      role: 'Solutions Architect',
+      company: 'Telecom Personal',
+      period: 'Jan 2020 – May 2021',
+      current: false,
+      project: '',
+      summary: [
+        'Responsible for architecting and developing requirements.',
+        'Built proofs of concept to bring a clear approach of the solution to the client.',
+        'Ensured a secure and efficient software development cycle.',
+      ],
+      tech: ['Java', 'Spring Boot', 'Hibernate', 'Microservices', 'SonarQube', 'Bitbucket', 'PL/SQL (Oracle)', '.NET Core', '.NET Framework', 'C#', 'OpenShift', 'AWS', 'Lambda'],
+    },
+    {
+      role: 'Integration Expert',
+      company: 'TECLAB',
+      period: 'Aug 2019 – Jan 2020',
+      current: false,
+      project: 'Education-tech online platform',
+      summary: [
+        'Designed and developed an education-tech online platform.',
+        'Developed microservices to enable communication between systems.',
+        'Implemented CI/CD using GitLab pipelines.',
+      ],
+      tech: ['Java', 'Spring Boot', 'Hibernate', 'Microservices', 'SonarQube', 'GitLab', 'PL/SQL (Oracle)'],
+    },
   ],
 
   education: [
@@ -101,17 +127,20 @@ export const profile = {
   ],
 
   skills: [
-    { name: 'Software Development', level: 98 },
-    { name: 'Analysis & Design', level: 90 },
-    { name: 'DevOps', level: 85 },
-    { name: 'Software Architecture', level: 77 },
+    { name: 'Software Development', level: 88 },
+    { name: 'Analysis & Design', level: 86 },
+    { name: 'Software Architecture', level: 85 },
   ],
 
   techSkills: [
-    { name: 'Java', level: 90 },
-    { name: 'CI/CD', level: 80 },
-    { name: 'AWS', level: 70 },
-    { name: 'JS / React', level: 60 },
+    { name: 'Java', level: 88 },
+    { name: 'C#', level: 86 },
+    { name: 'DevOps / CI-CD', level: 85 },
+    { name: 'React', level: 85 },
+    { name: 'Python', level: 84 },
+    { name: 'AWS', level: 84 },
+    { name: 'Next.js', level: 83 },
+    { name: 'AI', level: 83 },
   ],
 
   process: [
