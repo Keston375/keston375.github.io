@@ -19,6 +19,24 @@ const toast = $('#toast');
 const classic = $('#classic');
 const coarse = matchMedia('(pointer: coarse)').matches;
 
+// ───────────── analytics (Google Analytics tag lives in index.html)
+
+declare global {
+  interface Window { gtag?: (...args: unknown[]) => void }
+}
+const track = (event: string, params: Record<string, unknown> = {}) => window.gtag?.('event', event, params);
+
+document.addEventListener('click', (e) => {
+  const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href]');
+  if (!link) return;
+  const href = link.getAttribute('href')!;
+  const where = link.closest('#classic') ? 'classic' : 'game';
+  if (href.endsWith('.pdf')) track('cv_download', { from: where });
+  else if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http')) {
+    track('contact_click', { method: link.textContent?.trim(), from: where });
+  }
+});
+
 // ───────────── visited quests (persisted)
 
 const STORE = 'keston-town:visited';
@@ -31,6 +49,7 @@ const markVisited = (id: string) => {
   renderQuestLog();
   const after = QUESTS.filter((q) => visited.has(q)).length;
   if (QUESTS.includes(id as SectionId) && after === QUESTS.length && before < QUESTS.length) {
+    track('all_quests_complete');
     showToast('🏆 Achievement unlocked: <strong>Town Explorer</strong> — thanks for visiting every place!');
   }
 };
@@ -51,6 +70,7 @@ function openPanel(id: SectionId) {
   panel.hidden = false;
   game.setPaused(true);
   markVisited(id);
+  track('section_open', { section: id, from: 'game' });
   panelClose.focus();
 }
 
@@ -133,6 +153,7 @@ function showToast(html: string) {
 function showClassic(show: boolean) {
   if (show) {
     if (!classic.innerHTML) classic.innerHTML = renderClassic();
+    track('classic_view');
     classic.hidden = false;
     closePanel();
     game.setSleeping(true);
@@ -163,6 +184,7 @@ function startGame() {
   hud.hidden = false;
   renderHud();
   game.start();
+  track('game_start', { device: coarse ? 'touch' : 'desktop' });
   canvas.focus();
   if (!visited.has('welcome')) setTimeout(() => openPanel('welcome'), 450);
 }
